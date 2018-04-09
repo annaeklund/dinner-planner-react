@@ -39,12 +39,13 @@ class Sidebar extends Component {
 
   render() {
     return (
+
       <div className="Sidebar">
         <h3>This is the sidebar</h3>
         <p>
-        People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
-        <br/>
-        Total number of guests: {this.state.numberOfGuests}
+          People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+          <br/>
+          Total number of guests: {this.state.numberOfGuests}
         </p>
       </div>
     );
