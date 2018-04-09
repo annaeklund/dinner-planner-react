@@ -39,13 +39,14 @@ class Dishes extends Component {
     // depending on the state we either generate
     // useful message to the user or show the list
     // of returned dishes
+
     switch (this.state.status) {
       case 'INITIAL':
-        dishesList = <em>Loading...</em>
+        dishesList = <em>Loading...</em> 
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <li key={dish.id}>{dish.title}</li>
+          <div id="div3"><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100" height="100"></img></div>
         )
         break;
       default:
@@ -56,9 +57,9 @@ class Dishes extends Component {
     return (
       <div className="Dishes">
         <h3>Dishes</h3>
-        <ul>
-          {dishesList}
-        </ul>
+        
+        {dishesList}
+       
       </div>
     );
   }
