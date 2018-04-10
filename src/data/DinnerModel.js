@@ -1,3 +1,5 @@
+import Searchbar from '../Searchbar/Searchbar';
+
 const httpOptions = {
   headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
 };
@@ -19,7 +21,7 @@ const DinnerModel = function () {
   // API Calls
 
   this.getAllDishes = function () {
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search';
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)

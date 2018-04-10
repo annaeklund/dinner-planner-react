@@ -4,10 +4,14 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 
 
+
 class Searchbar extends Component { 
 	constructor(props) {
 	   super(props);
-	   this.state = {value: 'appetizer'};
+	   this.state = {
+	   	value: '',
+	   	filter: ''
+	   };
 
 	   this.handleChange = this.handleChange.bind(this);
 	   this.handleSubmit = this.handleSubmit.bind(this);
@@ -18,16 +22,16 @@ class Searchbar extends Component {
 	  }
 
 	handleSubmit(event) {
-	   alert('Your favorite flavor is: ' + this.state.value);
+	   alert('You chose: ' + this.state.value);
 	   event.preventDefault();
 	  }
 	render(){
 		return(
 			<div>
 				<h3>FIND A DISH</h3>
+				<input type="search" value={this.state.filter}/>
 				<form onSubmit={this.handleSubmit}>
       		  		<label>
-		         	 Choose dish 
 			          <select value={this.state.value} onChange={this.handleChange}>
 							<option value="appetizer">appetizer</option>
 							<option value="beverage">beverage</option>
