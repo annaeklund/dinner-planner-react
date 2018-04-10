@@ -24,7 +24,6 @@ class App extends Component {
                 {/* We rended diffrent component based on the path */}
                 <Route exact path="/" component={Welcome}/>
                 <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
-                // lägg till en till route till printview-sidan
               
               </header>
             </div>
