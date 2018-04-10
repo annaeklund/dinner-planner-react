@@ -5,7 +5,6 @@ import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel';
 import SelectDish from "./SelectDish/SelectDish";
 import { Grid, Row, Col } from 'react-bootstrap';
-import Main from "./Main/Main";
 
 class App extends Component {
   constructor(props) {
