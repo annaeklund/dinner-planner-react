@@ -21,7 +21,8 @@ const DinnerModel = function () {
   // API Calls
 
   this.getAllDishes = function () {
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search';
+    //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=chocolate';
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)

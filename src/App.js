@@ -5,6 +5,7 @@ import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel';
 import SelectDish from "./SelectDish/SelectDish";
 import { Grid, Row, Col } from 'react-bootstrap';
+import OneDish from './OneDish/OneDish';
 
 class App extends Component {
   constructor(props) {
@@ -23,6 +24,7 @@ class App extends Component {
                 {/* We rended diffrent component based on the path */}
                 <Route exact path="/" component={Welcome}/>
                 <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
+                <Route path="/onedish" component={OneDish}/>
               
               </header>
             </div>

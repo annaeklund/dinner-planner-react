@@ -3,6 +3,9 @@ import './Dishes.css';
 // Alternative to passing the moderl as the component property, 
 // we can import the model instance directly
 import {modelInstance} from '../data/DinnerModel';
+import { Route } from 'react-router-dom';
+import { Router, Link } from 'react-router';
+
 
 
 class Dishes extends Component {
@@ -14,6 +17,14 @@ class Dishes extends Component {
       status: 'INITIAL'
     }
   }
+
+  imageClick(){
+   // var transition = Route.transitionTo();
+    //transition("/onedish");
+    this.props.history.pushState(null, '/onedish');
+   // this.context.router.transitionTo('/onedish', {objectId: 'asdf'})
+  }
+
 
   // this methods is called by React lifecycle when the 
   // component is actually shown to the user (mounted to DOM)
@@ -46,14 +57,12 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <div id="div3"><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100" height="100"></img></div>
-        )
+          <div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => this.imageClick.bind(this)}></img><figcaption>{dish.title}</figcaption></div>)
         break;
       default:
         dishesList = <b>Failed to load data, please try again</b>
         break;
     }
-
     return (
           <div className="Dishes">
             <h3>Dishes</h3>
@@ -62,5 +71,7 @@ class Dishes extends Component {
     );
   }
 }
+
+
 
 export default Dishes;

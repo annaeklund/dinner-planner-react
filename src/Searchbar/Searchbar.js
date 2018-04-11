@@ -4,13 +4,12 @@ import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
 
 
-
 class Searchbar extends Component { 
 	constructor(props) {
 	   super(props);
 	   this.state = {
-	   	value: '',
-	   	filter: ''
+	   	value: null,
+	   	filter: null
 	   };
 
 	   this.handleChange = this.handleChange.bind(this);
@@ -18,21 +17,25 @@ class Searchbar extends Component {
 	  }
 
 	handleChange(event) {
-	   this.setState({value: event.target.value});
+	   this.setState({ [event.target.name]: event.target.value});
+	   	//value: event.target.value});
+	   //this.setState({filter: event.target.filter});
 	  }
 
 	handleSubmit(event) {
-	   alert('You chose: ' + this.state.value);
+		//this.state.filter = this.state.filter.bind(this);
+	   alert('You chose: ' + this.state.value + ' and filtered on: ' + this.state.filter);
+
 	   event.preventDefault();
 	  }
 	render(){
 		return(
 			<div>
 				<h3>FIND A DISH</h3>
-				<input type="search" value={this.state.filter}/>
 				<form onSubmit={this.handleSubmit}>
+				<input type="search" name="filter" value={this.state.filter} onChange={this.handleChange}/>
       		  		<label>
-			          <select value={this.state.value} onChange={this.handleChange}>
+			          <select name="value" value={this.state.value} onChange={this.handleChange}>
 							<option value="appetizer">appetizer</option>
 							<option value="beverage">beverage</option>
 							<option value="bread">bread</option>
@@ -46,7 +49,7 @@ class Searchbar extends Component {
 							<option value="soup">soup</option>
 			          </select>
 			        </label>
-		        <input type="submit" value="Search" />
+		        <input type="submit" value="Search"/>
 		      </form>
 		    </div>
 		);
