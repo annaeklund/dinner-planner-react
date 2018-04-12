@@ -11,10 +11,10 @@ class SelectDish extends Component {
       <div className="SelectDish">
         <Container>
           <Row debug>
-            <Col xs={6} md={2}>
+            <Col xs={3} md={3}>
               <Sidebar model={this.props.model}/>  {/*We pass the model as property to the Sidebar component */}
             </Col>
-            <Col xs={12} md={10}>
+            <Col xs={15} md={9}>
               <Row debug>
                 <Searchbar/>
               </Row>

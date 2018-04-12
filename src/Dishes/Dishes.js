@@ -26,6 +26,9 @@ class Dishes extends Component {
     this.props.history.pushState('/onedish');
 
   }
+  changeVariable(){
+    return 3;
+  }
      // var transition = Route.transitionTo();
     //transition("/onedish");
       //this.props.history.pushState(null, '/onedish');
@@ -63,15 +66,18 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <div><Link to="/onedish"><div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => {this.imageClick}}></img><figcaption>{dish.title.substr(0, 28) + "\u2026"}</figcaption></div></Link></div>)
+          <div><Link to={"/onedish/" + dish.id}><div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => {this.imageClick}}></img><figcaption>{dish.title.substr(0, 24) + "\u2026"}</figcaption></div></Link></div>),
+          myVariable = this.changeVariable();
+          }
         break;
       default:
         dishesList = <b>Failed to load data, please try again</b>
         break;
     }
+    console.log(dishesList[0]);
     return (
           <div className="Dishes">
-            <h3>Dishes</h3>
+            <h3>{myVariable}</h3>
             {dishesList}
           </div>
        
