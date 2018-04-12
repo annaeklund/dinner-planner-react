@@ -4,13 +4,17 @@ import './Dishes.css';
 // we can import the model instance directly
 import {modelInstance} from '../data/DinnerModel';
 import { Route } from 'react-router-dom';
-import { Router, Link } from 'react-router';
+import { Router } from 'react-router';
+import { Redirect } from 'react-router-dom'
+import OneDish from '../OneDish/OneDish';
+import { Link } from 'react-router-dom';
 
 
 
 class Dishes extends Component {
   constructor(props) {
     super(props);
+    this.imageClick = this.imageClick.bind(this)
     // We create the state to store the various statuses
     // e.g. API data loading or error 
     this.state = {
@@ -19,11 +23,13 @@ class Dishes extends Component {
   }
 
   imageClick(){
-   // var transition = Route.transitionTo();
-    //transition("/onedish");
-    this.props.history.pushState(null, '/onedish');
-   // this.context.router.transitionTo('/onedish', {objectId: 'asdf'})
+    this.props.history.pushState('/onedish');
+
   }
+     // var transition = Route.transitionTo();
+    //transition("/onedish");
+      //this.props.history.pushState(null, '/onedish');
+   // this.context.router.transitionTo('/onedish', {objectId: 'asdf'})
 
 
   // this methods is called by React lifecycle when the 
@@ -57,7 +63,7 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.state.dishes.map((dish) =>
-          <div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => this.imageClick.bind(this)}></img><figcaption>{dish.title}</figcaption></div>)
+          <div><Link to="/onedish"><div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => {this.imageClick}}></img><figcaption>{dish.title.substr(0, 28) + "\u2026"}</figcaption></div></Link></div>)
         break;
       default:
         dishesList = <b>Failed to load data, please try again</b>
@@ -68,6 +74,7 @@ class Dishes extends Component {
             <h3>Dishes</h3>
             {dishesList}
           </div>
+       
     );
   }
 }
