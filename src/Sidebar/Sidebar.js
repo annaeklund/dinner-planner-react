@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import OneDish from '../OneDish/OneDish'
 class Sidebar extends Component {
 
   constructor(props) {

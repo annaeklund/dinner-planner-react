@@ -11,14 +11,21 @@ import OneDish from './OneDish/OneDish';
 
 TODO
 
-- få fram id-numret hos den klickade maträtten
-- spara info om maträtt i clickedDish-lista
-- få över clickedDish till oneDish
-- visa info från clickedDish i oneDish-view
+- få fram id-numret hos den klickade maträtten CHECK
+- spara info om maträtt i clickedDish-lista CHECK
+- få över clickedDish till oneDish CHECK
+- visa info från clickedDish i oneDish-view CHECK
 
 - implementera add to menu:
   - spara den klickade maträttens information i lista {title: dish.title, preparation: dish.description} osv
   - få in namn & pris i sidebar
+- få filtrering att funka
+
+- print recipe
+
+småfix:
+- implementera local storage, dvs en ändring av antalet gäster ska sparas
+- number of guests korrekt i one dish view
 
 
 

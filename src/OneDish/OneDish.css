@@ -2,13 +2,32 @@
 .smallText{
 	font-size: smaller;
 	font-style: italic;
+	font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }
 
 #rcorners2 {
     border-radius: 15px;
     border: 2px solid #BBBBBB;
-    padding: 10px; 
-    width: 95%;
+    padding: 20px; 
+    width: 90%;
     height: 100%; 
-    background-color: lightyellow;
+    background-color: #EDF9FC; 
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+    font-size: 14px;
+}
+
+.btn {
+    background-color: #C7EDF8; 
+    border-radius: 8px;
+    color: grey;
+    padding: 8px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+}
+
+.OneDish {
+	font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
 }

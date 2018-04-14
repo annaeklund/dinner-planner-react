@@ -13,7 +13,7 @@ Prima postea delectus ea eam, <br/>ea vidisse explicari adolescens vix, his dica
         </p>
         
         <Link to="/search">
-            <button>Start planning</button>
+            <button id="btn">Start planning</button>
         </Link>
       </div>
     );

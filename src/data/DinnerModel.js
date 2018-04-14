@@ -1,5 +1,3 @@
-import Searchbar from '../Searchbar/Searchbar';
-
 const httpOptions = {
   headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
 };
@@ -20,9 +18,50 @@ const DinnerModel = function () {
 
   // API Calls
 
-  this.getAllDishes = function () {
+  this.addDishToMenu = function(){
+    // vill plocka ut image, titel, preparation, pris från onedish.js och spara dem här i en lista som json-objekt.
+    alert("hej");
+  }
+
+  // this.getAllDishes = function () {
+  //   //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
+  //   // https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=Chocolate
+
+  //   // vi vill ha type och filter från searchbar
+  //   // Searchbar.state.type
+  //   // const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert';
+  //   const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
+
+  //   return fetch(url, httpOptions)
+  //     .then(processResponse)
+  //     .catch(handleError)
+  // }
+
+  this.getDishes = function (options) {
     //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
-    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert';
+    // https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=Chocolate
+
+    // vi vill ha type och filter från searchbar
+    // Searchbar.state.type
+    // const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert';
+    const BASE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?'
+    
+    // lägg till sökningen till query string
+    const params = Object.keys(options)
+      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(options[k]))
+      .join('&');
+
+    const url = BASE_URL + params;
+
+    console.log(url);
+
+    return fetch(url, httpOptions)
+      .then(processResponse)
+      .catch(handleError)
+  }
+
+  this.getDish = function(id){
+    const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/' + id + '/information';
     return fetch(url, httpOptions)
       .then(processResponse)
       .catch(handleError)

@@ -2,31 +2,39 @@ import React, { Component } from 'react';
 import './Searchbar.css';
 import Dropdown from 'react-dropdown'
 import 'react-dropdown/style.css'
+import modelInstance from '../data/DinnerModel';
 
 
 class Searchbar extends Component { 
 	constructor(props) {
 	   super(props);
 	   this.state = {
-	   	value: null,
-	   	filter: null
+	   	value: '',
+	   	filter: ''
 	   };
+
+	   console.log(this.props)
 
 	   this.handleChange = this.handleChange.bind(this);
 	   this.handleSubmit = this.handleSubmit.bind(this);
 	  }
 
 	handleChange(event) {
+		// setting the type and filter to this.state.value & this.state.filter
 	   this.setState({ [event.target.name]: event.target.value});
-	   	//value: event.target.value});
-	   //this.setState({filter: event.target.filter});
 	  }
 
 	handleSubmit(event) {
-		//this.state.filter = this.state.filter.bind(this);
-	   alert('You chose: ' + this.state.value + ' and filtered on: ' + this.state.filter);
+		event.preventDefault();
 
-	   event.preventDefault();
+		const options = {
+			type: this.state.value,
+			query: this.state.filter
+		}
+		this.props.onSubmit(options);
+
+	   // alert('You chose: ' + this.state.value + ' and filtered on: ' + this.state.filter);
+
 	  }
 	render(){
 		return(
