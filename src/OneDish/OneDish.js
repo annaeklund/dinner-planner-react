@@ -2,10 +2,10 @@ import React, { Component } from 'react';
 import './OneDish.css';
 import { Container, Row, Col } from 'react-grid-system';
 import Sidebar from '../Sidebar/Sidebar';
-import Searchbar from '../Searchbar/Searchbar';
-import { Link } from 'react-router-dom';
+//import Searchbar from '../Searchbar/Searchbar';
+//import { Link } from 'react-router-dom';
 import {modelInstance} from '../data/DinnerModel';
-
+var allClickedDishes = [];
 
 class OneDish extends Component {
 
@@ -13,9 +13,9 @@ class OneDish extends Component {
     super(props);
     this.state = {
       status: 'INITIAL',
-      // EJ dynamisk ännu
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
+
   }
   // this is called when component is removed from the DOM
   // good place to remove observer
@@ -25,7 +25,12 @@ class OneDish extends Component {
   back(){
     window.location = '/search/'
     //localStorage.getItem("numGuests");
-  }    
+  } 
+
+  add(){
+      console.log("fgjkdfnds")
+      modelInstance.addToMenu(this.state.title, this.state.price, this.state.image, this.state.ingredients, this.state.preparation);
+  } 
 
   update() {
     this.setState({
@@ -50,12 +55,13 @@ class OneDish extends Component {
         preparation: dish.instructions,
         price: dish.pricePerServing
       })
+      modelInstance.clickedDish(this.state.title, this.state.image, this.state.ingredients, this.state.preparation, this.state.price);
+
     }).catch(() => {
       this.setState({
         status: 'ERROR'
       })
     })
-    // försök skicka med titel, image, description till addToMenu i dinnermodel.    
   }
 
   render() {
@@ -84,10 +90,7 @@ class OneDish extends Component {
         break;
     }
 
-    for (var i=0; i< ingAmountList; i++){
-      console.log("hejsan")
-    }
-    console.log("hej2")
+
 
     return (
       <div className="OneDish">
@@ -114,7 +117,7 @@ class OneDish extends Component {
                   <br/><br/>
                   <div id="rcorners2">
                     <Row>
-                      INGREDIENTS FOR {this.state.numberOfGuests} PEOPLE <br/>
+                      INGREDIENTS FOR {localStorage.getItem("numGuests")} PEOPLE <br/>
                     </Row>
                     <Row>
                     <Col xs={2} md={2}>
@@ -132,7 +135,7 @@ class OneDish extends Component {
                     </Row>
                     <Row>
 
-                    <button id="addButton" className="btn" onClick={modelInstance.addDishToMenu}>Add to menu</button> 
+                    <button id="addButton" className="btn" onClick={modelInstance.addToMenu}>Add to menu</button> 
                     </Row>
                   </div>
                 </Col>

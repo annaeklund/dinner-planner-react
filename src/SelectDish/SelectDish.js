@@ -4,6 +4,7 @@ import Sidebar from '../Sidebar/Sidebar';
 import Dishes from '../Dishes/Dishes';
 import { Container, Row, Col } from 'react-grid-system';
 import Searchbar from '../Searchbar/Searchbar';
+import {modelInstance} from '../data/DinnerModel';
 
 class SelectDish extends Component {
   constructor(props) {

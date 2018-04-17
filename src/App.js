@@ -4,7 +4,7 @@ import { Route } from 'react-router-dom';
 import Welcome from './Welcome/Welcome';
 import { modelInstance } from './data/DinnerModel';
 import SelectDish from "./SelectDish/SelectDish";
-import { Grid, Row, Col } from 'react-bootstrap';
+//import { Grid, Row, Col } from 'react-bootstrap';
 import OneDish from './OneDish/OneDish';
 
 /*
@@ -19,13 +19,13 @@ TODO
 - implementera add to menu:
   - spara den klickade maträttens information i lista {title: dish.title, preparation: dish.description} osv
   - få in namn & pris i sidebar
-- få filtrering att funka
+- få filtrering att funka CHECK
 
 - print recipe
 
 småfix:
-- implementera local storage, dvs en ändring av antalet gäster ska sparas
-- number of guests korrekt i one dish view
+- implementera local storage, dvs en ändring av antalet gäster ska sparas CHECK
+- number of guests korrekt i one dish view CHECK
 
 
 

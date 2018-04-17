@@ -2,11 +2,6 @@ import React, {Component} from 'react';
 import './Dishes.css';
 // Alternative to passing the moderl as the component property, 
 // we can import the model instance directly
-import {modelInstance} from '../data/DinnerModel';
-import { Route } from 'react-router-dom';
-import { Router } from 'react-router';
-import { Redirect } from 'react-router-dom'
-import OneDish from '../OneDish/OneDish';
 import { Link } from 'react-router-dom';
 
 

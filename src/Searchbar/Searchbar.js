@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Searchbar.css';
 import 'react-dropdown/style.css'
-import modelInstance from '../data/DinnerModel';
+//import modelInstance from '../data/DinnerModel';
 
 
 class Searchbar extends Component { 
@@ -12,7 +12,7 @@ class Searchbar extends Component {
 	   	filter: ''
 	   };
 
-	   console.log(this.props)
+	   //console.log(this.props)
 
 	   this.handleChange = this.handleChange.bind(this);
 	   this.handleSubmit = this.handleSubmit.bind(this);

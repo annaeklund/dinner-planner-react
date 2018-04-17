@@ -6,6 +6,8 @@ const DinnerModel = function () {
 
   let numberOfGuests = 4;
   let observers = [];
+  var allClickedDishes = [];
+  let menu = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -16,13 +18,69 @@ const DinnerModel = function () {
     return numberOfGuests;
   };
 
-  // API Calls
+  this.clickedDish = function(title, image, ingredients, preparation, price){
 
-  this.addDishToMenu = function(){
-    // vill plocka ut image, titel, preparation, pris från onedish.js och spara dem här i en lista som json-objekt.
-    alert("hej");
+    const dish= {
+      title: title,
+      price: price,
+      image: image,
+      preparation: preparation,
+      ingredients: ingredients
+    }
+
+    allClickedDishes.push(dish);
+  }
+
+  this.addToMenu = function () {
+
+    var num = allClickedDishes.length - 1;
+    // last element in clicked dishes list
+    var dish = allClickedDishes[num];
+
+    console.log("addToMenu")
+    /*if(menu.length < 1){
+      menu.push(dish);
+    }else{
+      for(var i = 0; i< menu.length ; i++){
+        // compare all menu items to last item in clicked dish-list
+        if (menu[i].title === dish.title){
+          console.log("identical");
+          return;
+        }
+        //menu.push(allClickedDishes[num]);
+      }
+      menu.push(dish);
+    }*/
+    localStorage.setItem("menu", dish);
+    menu.push(dish)
+    console.log(allClickedDishes)
+    console.log(menu)
+   
+    //console.log(menu[])
     notifyObservers();
   }
+
+  /*this.addDishToMenu = function(){
+    //console.log(modelInstance.title);
+  }
+    // vill plocka ut image, titel, preparation, pris från onedish.js och spara dem här i en lista som json-objekt.
+    var num = allClickedDishes.length - 1;
+    var dish = allClickedDishes[num];
+    // if element not in menu
+    if(menu.length < 1){
+      menu.push({'title': dish.title, 'price': dish.pricePerServing, 'image': dish.image, 'prep': dish.instructions});
+    } else {
+      for(key in menu){
+        // if the dish already exists in the menu, exit the function
+        if (menu[key].title === dish.title){
+          console.log("identical");
+          return;
+        }
+      }// add to menu since it isn't already added in the menu
+      menu.push({'title': dish.title, 'price': dish.pricePerServing, 'image': dish.image, 'prep': dish.instructions});
+    }
+    notifyObservers();
+  }*/
 
   // this.getAllDishes = function () {
   //   //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
@@ -53,8 +111,6 @@ const DinnerModel = function () {
       .join('&');
 
     const url = BASE_URL + params;
-
-    console.log(url);
 
     return fetch(url, httpOptions)
       .then(processResponse)

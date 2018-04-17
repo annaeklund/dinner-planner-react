@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
+import {modelInstance} from '../data/DinnerModel';
 //import OneDish from '../OneDish/OneDish'
 class Sidebar extends Component {
 
@@ -10,7 +11,6 @@ class Sidebar extends Component {
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
-    localStorage.setItem("numGuests", this.props.model.getNumberOfGuests());
   }
 
   // this methods is called by React lifecycle when the 
@@ -29,6 +29,7 @@ class Sidebar extends Component {
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
+    //console.log(modelInstance.title)
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests()
     })
@@ -45,7 +46,7 @@ class Sidebar extends Component {
       <div className="Sidebar">
       <h3>My Dinner </h3>
         <p>
-          People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
+          People: <input value={localStorage.getItem("numGuests")} onChange={this.onNumberOfGuestsChanged}/>
           <br/>
           Total number of guests: {localStorage.getItem("numGuests")}
         </p>
