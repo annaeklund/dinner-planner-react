@@ -50,6 +50,7 @@ class Sidebar extends Component {
           <br/>
           Total number of guests: {localStorage.getItem("numGuests")}
         </p>
+        <div className="side">{modelInstance.getSidebarMenu}</div>
       </div>
     );
   }

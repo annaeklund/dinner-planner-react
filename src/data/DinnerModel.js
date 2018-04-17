@@ -1,3 +1,8 @@
+var allClickedDishes = [];
+var menu = [];
+var titleList = [];
+var priceList = [];
+
 const httpOptions = {
   headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
 };
@@ -6,8 +11,8 @@ const DinnerModel = function () {
 
   let numberOfGuests = 4;
   let observers = [];
-  var allClickedDishes = [];
-  let menu = [];
+  //var allClickedDishes = [];
+  //let menu = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -18,27 +23,11 @@ const DinnerModel = function () {
     return numberOfGuests;
   };
 
-  this.clickedDish = function(title, image, ingredients, preparation, price){
-
-    const dish= {
-      title: title,
-      price: price,
-      image: image,
-      preparation: preparation,
-      ingredients: ingredients
-    }
-
-    allClickedDishes.push(dish);
-  }
-
-  this.addToMenu = function () {
-
+  this.addToMenu = function(){
     var num = allClickedDishes.length - 1;
-    // last element in clicked dishes list
     var dish = allClickedDishes[num];
 
-    console.log("addToMenu")
-    /*if(menu.length < 1){
+    if(menu.length < 1){
       menu.push(dish);
     }else{
       for(var i = 0; i< menu.length ; i++){
@@ -50,15 +39,67 @@ const DinnerModel = function () {
         //menu.push(allClickedDishes[num]);
       }
       menu.push(dish);
-    }*/
-    localStorage.setItem("menu", dish);
+    }
+    console.log(menu);
+    notifyObservers();
+  }
+
+  this.getFullMenu = function(){
+    return menu;
+  }
+
+  this.getSidebarMenu = function(){
+    for(var i = 0; i< menu.length; i++){
+      titleList.push(menu[0].title)
+      priceList.push(menu[0].price)
+    }
+    console.log(menu[0]);
+    return titleList;
+  }
+
+  this.clickedDish = function(title, image, ingredients, preparation, price){
+    console.log("allClickedDishes")
+
+    const dish= {
+      title: title,
+      price: price,
+      image: image,
+      preparation: preparation,
+      ingredients: ingredients
+    }
+
+    allClickedDishes.push(dish);
+    console.log(allClickedDishes);
+  }
+
+ /* this.addToMenu = function () {
+
+    var num = allClickedDishes.length - 1;
+    // last element in clicked dishes list
+    var dish = allClickedDishes[num];
     menu.push(dish)
+
+    console.log("addToMenu")
+    if(menu.length < 1){
+      menu.push(dish);
+    }else{
+      for(var i = 0; i< menu.length ; i++){
+        // compare all menu items to last item in clicked dish-list
+        if (menu[i].title === dish.title){
+          console.log("identical");
+          return;
+        }
+        //menu.push(allClickedDishes[num]);
+      }
+      menu.push(dish);
+    }
+    //localStorage.setItem("menu", JSON.stringify(menu));
     console.log(allClickedDishes)
     console.log(menu)
    
     //console.log(menu[])
     notifyObservers();
-  }
+  }*/
 
   /*this.addDishToMenu = function(){
     //console.log(modelInstance.title);
@@ -99,10 +140,6 @@ const DinnerModel = function () {
   this.getDishes = function (options) {
     //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
     // https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=Chocolate
-
-    // vi vill ha type och filter från searchbar
-    // Searchbar.state.type
-    // const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert';
     const BASE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?'
     
     // lägg till sökningen till query string

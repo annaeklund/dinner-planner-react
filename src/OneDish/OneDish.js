@@ -2,10 +2,7 @@ import React, { Component } from 'react';
 import './OneDish.css';
 import { Container, Row, Col } from 'react-grid-system';
 import Sidebar from '../Sidebar/Sidebar';
-//import Searchbar from '../Searchbar/Searchbar';
-//import { Link } from 'react-router-dom';
 import {modelInstance} from '../data/DinnerModel';
-var allClickedDishes = [];
 
 class OneDish extends Component {
 
@@ -23,13 +20,13 @@ class OneDish extends Component {
     this.props.model.removeObserver(this)
   }
   back(){
-    window.location = '/search/'
+    //window.location = '/search/'
     //localStorage.getItem("numGuests");
   } 
 
   add(){
       console.log("fgjkdfnds")
-      modelInstance.addToMenu(this.state.title, this.state.price, this.state.image, this.state.ingredients, this.state.preparation);
+      modelInstance.addToMenu();
   } 
 
   update() {
@@ -108,7 +105,8 @@ class OneDish extends Component {
                       Lorem ipsum dolor sit amet, pri aeque sadipscing an. Putant patrioque eu nam, est modo sapientem efficiantur in. Sit latine alterum in. At mel reque ignota discere. Dicta sententiae sit ut, at hinc patrioque sea. Populo vidisse dolores mel id, molestiae aliquando te his. Te quo brute decore eligendi, suscipiantur necessitatibus usu ne, vel harum consequuntur in.
                   </div>
 
-                    <button id="backButton" className="btn" onClick={this.back}>Back to search</button>
+
+                  
                   
                   <h3>PREPARATION</h3>
                   <p>{this.state.preparation}</p>
@@ -135,7 +133,7 @@ class OneDish extends Component {
                     </Row>
                     <Row>
 
-                    <button id="addButton" className="btn" onClick={modelInstance.addToMenu}>Add to menu</button> 
+                    <button id="addButton" className="btn" onClick={this.add}>Add to menu</button> 
                     </Row>
                   </div>
                 </Col>
