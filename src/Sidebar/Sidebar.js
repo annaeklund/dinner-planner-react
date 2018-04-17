@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
-import OneDish from '../OneDish/OneDish'
+//import OneDish from '../OneDish/OneDish'
 class Sidebar extends Component {
 
   constructor(props) {
@@ -10,6 +10,7 @@ class Sidebar extends Component {
     this.state = {
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
+    localStorage.setItem("numGuests", this.props.model.getNumberOfGuests());
   }
 
   // this methods is called by React lifecycle when the 
@@ -36,17 +37,17 @@ class Sidebar extends Component {
   // our handler for the input's on change event
   onNumberOfGuestsChanged = (e) => {
     this.props.model.setNumberOfGuests(+e.target.value)
+    localStorage.setItem("numGuests", this.props.model.getNumberOfGuests());
   }
 
   render() {
     return (
-
       <div className="Sidebar">
       <h3>My Dinner </h3>
         <p>
           People: <input value={this.state.numberOfGuests} onChange={this.onNumberOfGuestsChanged}/>
           <br/>
-          Total number of guests: {this.state.numberOfGuests}
+          Total number of guests: {localStorage.getItem("numGuests")}
         </p>
       </div>
     );

@@ -21,6 +21,7 @@ const DinnerModel = function () {
   this.addDishToMenu = function(){
     // vill plocka ut image, titel, preparation, pris från onedish.js och spara dem här i en lista som json-objekt.
     alert("hej");
+    notifyObservers();
   }
 
   // this.getAllDishes = function () {

@@ -17,13 +17,26 @@ class OneDish extends Component {
       numberOfGuests: this.props.model.getNumberOfGuests()
     }
   }
-
+  // this is called when component is removed from the DOM
+  // good place to remove observer
+  componentWillUnmount() {
+    this.props.model.removeObserver(this)
+  }
   back(){
     window.location = '/search/'
+    //localStorage.getItem("numGuests");
   }    
-  
+
+  update() {
+    this.setState({
+      numberOfGuests: this.props.model.getNumberOfGuests()
+    })
+    //console.log(this.state.numberOfGuests);
+  }
+
 
   componentDidMount = () => {
+    this.props.model.addObserver(this)
     var splitted = window.location.href.split("/");
     var id = splitted[4];
     // when data is retrieved we update the state
@@ -60,7 +73,7 @@ class OneDish extends Component {
           <div className="ingName">{ingr.name}</div>
        )
        ingAmountList = this.state.ingredients.map((ingr) =>
-          <div className="ingAmount">{ingr.amount.toFixed(2)}</div>
+          <div className="ingAmount">{ingr.amount.toFixed(2) * this.state.numberOfGuests}</div>
        )
        ingUnitList = this.state.ingredients.map((ingr) =>
           <div className="ingUnit">{ingr.unit}</div>
@@ -70,6 +83,11 @@ class OneDish extends Component {
         ingNameList = <b>Failed to load data, please try again</b>
         break;
     }
+
+    for (var i=0; i< ingAmountList; i++){
+      console.log("hejsan")
+    }
+    console.log("hej2")
 
     return (
       <div className="OneDish">
