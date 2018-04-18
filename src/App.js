@@ -6,6 +6,7 @@ import { modelInstance } from './data/DinnerModel';
 import SelectDish from "./SelectDish/SelectDish";
 //import { Grid, Row, Col } from 'react-bootstrap';
 import OneDish from './OneDish/OneDish';
+import Menu from './Menu/Menu';
 
 /*
 
@@ -51,6 +52,7 @@ class App extends Component {
                 <Route exact path="/" component={Welcome}/>
                 <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
                 <Route path="/onedish" render={() => <OneDish model={modelInstance}/>}/>
+                <Route path="/menu" component={Menu}/>
               
               </header>
             </div>

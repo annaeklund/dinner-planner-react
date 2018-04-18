@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './Sidebar.css';
 import {modelInstance} from '../data/DinnerModel';
+import { Link } from 'react-router-dom';
 //import OneDish from '../OneDish/OneDish'
 class Sidebar extends Component {
 
@@ -50,6 +51,9 @@ class Sidebar extends Component {
           <br/>
           Total number of guests: {localStorage.getItem("numGuests")}
         </p>
+        <Link to="/menu">
+          <button id="confButton" className="btn" >Confirm Dinner</button>
+        </Link>
         <div className="side">{modelInstance.getSidebarMenu}</div>
       </div>
     );
