@@ -1,7 +1,5 @@
 var allClickedDishes = [];
 var menu = [];
-var titleList = [];
-var priceList = [];
 
 const httpOptions = {
   headers: {'X-Mashape-Key': 'Qu9grxVNWpmshA4Kl9pTwyiJxVGUp1lKzrZjsnghQMkFkfA4LB'}
@@ -11,8 +9,6 @@ const DinnerModel = function () {
 
   let numberOfGuests = 4;
   let observers = [];
-  //var allClickedDishes = [];
-  //let menu = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -24,11 +20,13 @@ const DinnerModel = function () {
   };
 
   this.addToMenu = function(){
+
     var num = allClickedDishes.length - 1;
     var dish = allClickedDishes[num];
 
     if(menu.length < 1){
       menu.push(dish);
+      localStorage.setItem("menu", JSON.stringify(dish));
     }else{
       for(var i = 0; i< menu.length ; i++){
         // compare all menu items to last item in clicked dish-list
@@ -39,22 +37,23 @@ const DinnerModel = function () {
         //menu.push(allClickedDishes[num]);
       }
       menu.push(dish);
+      localStorage.setItem("menu", JSON.stringify(dish));
     }
     console.log(menu);
+    //localStorage.setItem("menu", menu);
     notifyObservers();
   }
 
   this.getFullMenu = function(){
-    return menu;
-  }
-
-  this.getSidebarMenu = function(){
-    for(var i = 0; i< menu.length; i++){
-      titleList.push(menu[0].title)
-      priceList.push(menu[0].price)
+    if(menu[0] != null){
+      var storedMenu = JSON.parse(localStorage.getItem("menu"));
+      console.log(storedMenu);
+      if(storedMenu[0] != null){
+        menu = storedMenu;
+      }
     }
-    console.log(menu[0]);
-    return titleList;
+    console.log(menu);
+    return menu;
   }
 
   this.clickedDish = function(title, image, ingredients, preparation, price){
@@ -71,71 +70,6 @@ const DinnerModel = function () {
     allClickedDishes.push(dish);
     console.log(allClickedDishes);
   }
-
- /* this.addToMenu = function () {
-
-    var num = allClickedDishes.length - 1;
-    // last element in clicked dishes list
-    var dish = allClickedDishes[num];
-    menu.push(dish)
-
-    console.log("addToMenu")
-    if(menu.length < 1){
-      menu.push(dish);
-    }else{
-      for(var i = 0; i< menu.length ; i++){
-        // compare all menu items to last item in clicked dish-list
-        if (menu[i].title === dish.title){
-          console.log("identical");
-          return;
-        }
-        //menu.push(allClickedDishes[num]);
-      }
-      menu.push(dish);
-    }
-    //localStorage.setItem("menu", JSON.stringify(menu));
-    console.log(allClickedDishes)
-    console.log(menu)
-   
-    //console.log(menu[])
-    notifyObservers();
-  }*/
-
-  /*this.addDishToMenu = function(){
-    //console.log(modelInstance.title);
-  }
-    // vill plocka ut image, titel, preparation, pris från onedish.js och spara dem här i en lista som json-objekt.
-    var num = allClickedDishes.length - 1;
-    var dish = allClickedDishes[num];
-    // if element not in menu
-    if(menu.length < 1){
-      menu.push({'title': dish.title, 'price': dish.pricePerServing, 'image': dish.image, 'prep': dish.instructions});
-    } else {
-      for(key in menu){
-        // if the dish already exists in the menu, exit the function
-        if (menu[key].title === dish.title){
-          console.log("identical");
-          return;
-        }
-      }// add to menu since it isn't already added in the menu
-      menu.push({'title': dish.title, 'price': dish.pricePerServing, 'image': dish.image, 'prep': dish.instructions});
-    }
-    notifyObservers();
-  }*/
-
-  // this.getAllDishes = function () {
-  //   //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
-  //   // https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=Chocolate
-
-  //   // vi vill ha type och filter från searchbar
-  //   // Searchbar.state.type
-  //   // const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert';
-  //   const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'
-
-  //   return fetch(url, httpOptions)
-  //     .then(processResponse)
-  //     .catch(handleError)
-  // }
 
   this.getDishes = function (options) {
     //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
@@ -177,6 +111,7 @@ const DinnerModel = function () {
       })
     } else {
       console.error('getAllDishes() API Error:', error.message || error)
+      alert("you don't have an internet connection")
     }
   }
 

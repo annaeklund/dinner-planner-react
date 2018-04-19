@@ -8,9 +8,26 @@
     display: inline-block;
     font-size: 12px;
     font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+}*/
+
+
+
+.search input[type=submit],
+.search input[type=button]{
+    background-color: #C7EDF8; 
+    border-radius: 8px;
+    color: grey;
+    padding: 4px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px;
+    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+
 }
 
-.selectStyle{
+
+/*#btn {
     background-color: #C7EDF8; 
     border-radius: 8px;
     color: grey;
@@ -19,5 +36,5 @@
     text-decoration: none;
     display: inline-block;
     font-size: 12px;
-    font-family: Palatino Linotype, Book Antiqua, Palatino, serif;
+    font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
 }*/

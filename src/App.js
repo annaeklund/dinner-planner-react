@@ -7,6 +7,7 @@ import SelectDish from "./SelectDish/SelectDish";
 //import { Grid, Row, Col } from 'react-bootstrap';
 import OneDish from './OneDish/OneDish';
 import Menu from './Menu/Menu';
+import Print from './Print/Print';
 
 /*
 
@@ -18,16 +19,21 @@ TODO
 - visa info från clickedDish i oneDish-view CHECK
 
 - implementera add to menu:
-  - spara den klickade maträttens information i lista {title: dish.title, preparation: dish.description} osv
-  - få in namn & pris i sidebar
+  - spara den klickade maträttens information i lista {title: dish.title, preparation: dish.description} osv CHECK
 - få filtrering att funka CHECK
 
-- print recipe
+- print recipe CHECK
 
 småfix:
 - implementera local storage, dvs en ändring av antalet gäster ska sparas CHECK
 - number of guests korrekt i one dish view CHECK
 
+TODO
+error meddelande 
+få in namn & pris i sidebar
+använder vi observers korrekt
+css
+städa koden, fixa kommentarer
 
 
 */
@@ -46,13 +52,14 @@ class App extends Component {
     return (
             <div className="App">
               <header className="App-header">
-                <h1 className="App-title">{this.state.title}</h1>
+                <h1 className="App-title"><br/>{this.state.title}<br/><br/></h1>
                 
                 {/* We rended diffrent component based on the path */}
                 <Route exact path="/" component={Welcome}/>
                 <Route path="/search" render={() => <SelectDish model={modelInstance}/>}/>
                 <Route path="/onedish" render={() => <OneDish model={modelInstance}/>}/>
                 <Route path="/menu" component={Menu}/>
+                <Route path="/print" component={Print}/>
               
               </header>
             </div>

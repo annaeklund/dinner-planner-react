@@ -44,7 +44,7 @@ class Dishes extends Component {
       this.setState({
         status: 'LOADED'
       })
-    }
+    } 
   }
 
   render() {

@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import './Sidebar.css';
 import {modelInstance} from '../data/DinnerModel';
 import { Link } from 'react-router-dom';
+import { Container, Row, Col } from 'react-grid-system';
 //import OneDish from '../OneDish/OneDish'
+var menu = [];
 class Sidebar extends Component {
 
   constructor(props) {
@@ -42,7 +44,24 @@ class Sidebar extends Component {
     localStorage.setItem("numGuests", this.props.model.getNumberOfGuests());
   }
 
+  //var prices = modelInstance.getSidebarPrices();
+
+
   render() {
+
+   var menu = modelInstance.getFullMenu();
+    var sidebarMenu = menu.map((dish) =>
+    <div className="sidebarMenu">
+      <Row>
+      <Col xs={12} md={9}>
+        {dish.title}
+      </Col>
+      
+        {dish.price * modelInstance.getNumberOfGuests()} <br/>
+      
+      </Row>
+    </div>)
+
     return (
       <div className="Sidebar">
       <h3>My Dinner </h3>
@@ -51,10 +70,10 @@ class Sidebar extends Component {
           <br/>
           Total number of guests: {localStorage.getItem("numGuests")}
         </p>
+        {sidebarMenu}
         <Link to="/menu">
           <button id="confButton" className="btn" >Confirm Dinner</button>
         </Link>
-        <div className="side">{modelInstance.getSidebarMenu}</div>
       </div>
     );
   }

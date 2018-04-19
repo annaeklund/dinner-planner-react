@@ -37,7 +37,7 @@ class Searchbar extends Component {
 	  }
 	render(){
 		return(
-			<div>
+			<div className ="search">
 				<h3>FIND A DISH</h3>
 				<form onSubmit={this.handleSubmit}>
 				<input type="search" name="filter" value={this.state.filter} onChange={this.handleChange}/>
