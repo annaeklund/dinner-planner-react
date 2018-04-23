@@ -4,7 +4,6 @@ import Sidebar from '../Sidebar/Sidebar';
 import Dishes from '../Dishes/Dishes';
 import { Container, Row, Col } from 'react-grid-system';
 import Searchbar from '../Searchbar/Searchbar';
-import {modelInstance} from '../data/DinnerModel';
 
 class SelectDish extends Component {
   constructor(props) {
@@ -20,6 +19,7 @@ class SelectDish extends Component {
     this.search()
   }
   search(options = {}) {
+    // call to API
     this.props.model.getDishes(options).then(response => {
       this.setState({
         dishes: response.results

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Searchbar.css';
 import 'react-dropdown/style.css'
-//import modelInstance from '../data/DinnerModel';
 
 
 class Searchbar extends Component { 
@@ -11,8 +10,6 @@ class Searchbar extends Component {
 	   	value: '',
 	   	filter: ''
 	   };
-
-	   //console.log(this.props)
 
 	   this.handleChange = this.handleChange.bind(this);
 	   this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,9 +28,6 @@ class Searchbar extends Component {
 			query: this.state.filter
 		}
 		this.props.onSubmit(options);
-
-	   // alert('You chose: ' + this.state.value + ' and filtered on: ' + this.state.filter);
-
 	  }
 	render(){
 		return(
@@ -42,7 +36,8 @@ class Searchbar extends Component {
 				<form onSubmit={this.handleSubmit}>
 				<input type="search" name="filter" value={this.state.filter} onChange={this.handleChange}/>
       		  		<label>
-			          <select name="value" value={this.state.value} onChange={this.handleChange}>
+			          <select className="dropdown" name="value" value={this.state.value} onChange={this.handleChange}>
+			          		<option value="" selected>Please select a type</option>
 							<option value="appetizer">appetizer</option>
 							<option value="beverage">beverage</option>
 							<option value="bread">bread</option>

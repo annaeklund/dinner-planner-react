@@ -3,12 +3,6 @@ import './Print.css';
 import { Link } from 'react-router-dom';
 import { modelInstance } from '../data/DinnerModel';
 import { Container, Row, Col } from 'react-grid-system';
-var titleList = [];
-var imageList = [];
-var priceList = [];
-var menuList = [];
-var totalPrice = 0;
-var names = [];
 var printList = [];
 
 class Print extends Component {

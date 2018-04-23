@@ -1,5 +1,3 @@
-var allClickedDishes = [];
-var menu = [];
 
 const httpOptions = {
   headers: {'X-Mashape-Key': 'k2x8zD2tl2mshzMW9pmsxLv8y7Elp1bJxTJjsnm11xhlvs7qCX'}
@@ -9,6 +7,8 @@ const DinnerModel = function () {
 
   let numberOfGuests = 4;
   let observers = [];
+  var menu = JSON.parse(localStorage.getItem('menu')) || [];
+  var allClickedDishes = [];
 
   this.setNumberOfGuests = function (num) {
     numberOfGuests = num;
@@ -24,41 +24,34 @@ const DinnerModel = function () {
     var num = allClickedDishes.length - 1;
     var dish = allClickedDishes[num];
 
+
     if(menu.length < 1){
       menu.push(dish);
-      localStorage.setItem("menu", JSON.stringify(dish));
+      localStorage.setItem("menu", JSON.stringify(menu));
     }else{
       for(var i = 0; i< menu.length ; i++){
         // compare all menu items to last item in clicked dish-list
         if (menu[i].title === dish.title){
-          console.log("identical");
           return;
         }
-        //menu.push(allClickedDishes[num]);
       }
       menu.push(dish);
-      localStorage.setItem("menu", JSON.stringify(dish));
+      localStorage.setItem("menu", JSON.stringify(menu));
     }
-    console.log(menu);
-    //localStorage.setItem("menu", menu);
     notifyObservers();
   }
 
   this.getFullMenu = function(){
     if(menu[0] != null){
       var storedMenu = JSON.parse(localStorage.getItem("menu"));
-      console.log(storedMenu);
       if(storedMenu[0] != null){
         menu = storedMenu;
       }
     }
-    console.log(menu);
     return menu;
   }
 
   this.clickedDish = function(title, image, ingredients, preparation, price){
-    console.log("allClickedDishes")
-
     const dish= {
       title: title,
       price: price,
@@ -68,20 +61,15 @@ const DinnerModel = function () {
     }
 
     allClickedDishes.push(dish);
-    console.log(allClickedDishes);
   }
 
   this.getDishes = function (options) {
-    //const url = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search'; 
-    // https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?type=dessert&query=Chocolate
     const BASE_URL = 'https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?'
-    
-    // lägg till sökningen till query string
-    const params = Object.keys(options)
-      .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(options[k]))
-      .join('&');
 
-    const url = BASE_URL + params;
+      const params = Object.keys(options)
+        .map(k => encodeURIComponent(k) + '=' + encodeURIComponent(options[k]))
+        .join('&');
+      const url = BASE_URL + params;
 
     return fetch(url, httpOptions)
       .then(processResponse)

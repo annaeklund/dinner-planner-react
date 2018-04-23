@@ -19,13 +19,8 @@ class OneDish extends Component {
   componentWillUnmount() {
     this.props.model.removeObserver(this)
   }
-  back(){
-    //window.location = '/search/'
-    //localStorage.getItem("numGuests");
-  } 
 
   add(){
-      console.log("fgjkdfnds")
       modelInstance.addToMenu();
   } 
 
@@ -33,12 +28,12 @@ class OneDish extends Component {
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests()
     })
-    //console.log(this.state.numberOfGuests);
   }
 
 
-  componentDidMount = () => {
-    this.props.model.addObserver(this)
+  componentDidMount() {
+    // notifies change in number of guests
+    this.props.model.addObserver(this);
     var splitted = window.location.href.split("/");
     var id = splitted[4];
     // when data is retrieved we update the state
@@ -104,9 +99,6 @@ class OneDish extends Component {
                   <div className="smallText">
                       Lorem ipsum dolor sit amet, pri aeque sadipscing an. Putant patrioque eu nam, est modo sapientem efficiantur in. Sit latine alterum in. At mel reque ignota discere. Dicta sententiae sit ut, at hinc patrioque sea. Populo vidisse dolores mel id, molestiae aliquando te his. Te quo brute decore eligendi, suscipiantur necessitatibus usu ne, vel harum consequuntur in.
                   </div>
-
-
-                  
                   
                   <h3>PREPARATION</h3>
                   <p>{this.state.preparation}</p>
@@ -129,7 +121,7 @@ class OneDish extends Component {
                       </Col>
                     </Row>
                     <Row>
-                    Total price: {this.state.price * this.state.numberOfGuests}
+                    Total price: {(this.state.price * this.state.numberOfGuests).toFixed(2)}
                     </Row>
                     <Row>
 

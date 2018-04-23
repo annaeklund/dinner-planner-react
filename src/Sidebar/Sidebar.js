@@ -2,9 +2,7 @@ import React, { Component } from 'react';
 import './Sidebar.css';
 import {modelInstance} from '../data/DinnerModel';
 import { Link } from 'react-router-dom';
-import { Container, Row, Col } from 'react-grid-system';
-//import OneDish from '../OneDish/OneDish'
-var menu = [];
+import { Row, Col } from 'react-grid-system';
 class Sidebar extends Component {
 
   constructor(props) {
@@ -32,7 +30,6 @@ class Sidebar extends Component {
   // in our update function we modify the state which will
   // cause the component to re-render
   update() {
-    //console.log(modelInstance.title)
     this.setState({
       numberOfGuests: this.props.model.getNumberOfGuests()
     })
@@ -44,9 +41,6 @@ class Sidebar extends Component {
     localStorage.setItem("numGuests", this.props.model.getNumberOfGuests());
   }
 
-  //var prices = modelInstance.getSidebarPrices();
-
-
   render() {
 
    var menu = modelInstance.getFullMenu();
@@ -57,7 +51,7 @@ class Sidebar extends Component {
         {dish.title}
       </Col>
       
-        {dish.price * modelInstance.getNumberOfGuests()} <br/>
+        {(dish.price * modelInstance.getNumberOfGuests()).toFixed(2)} <br/>
       
       </Row>
     </div>)

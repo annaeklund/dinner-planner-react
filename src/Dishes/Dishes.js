@@ -4,8 +4,6 @@ import './Dishes.css';
 // we can import the model instance directly
 import { Link } from 'react-router-dom';
 
-
-
 class Dishes extends Component {
   constructor(props) {
     super(props);
@@ -49,10 +47,6 @@ class Dishes extends Component {
 
   render() {
     let dishesList = null;
-    
-    // depending on the state we either generate
-    // useful message to the user or show the list
-    // of returned dishes
 
     switch (this.state.status) {
       case 'INITIAL':
@@ -60,7 +54,7 @@ class Dishes extends Component {
         break;
       case 'LOADED':
         dishesList = this.props.dishes.map((dish) =>
-          <div><Link to={"/onedish/" + dish.id}><div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => {this.imageClick}}></img><figcaption>{dish.title.substr(0, 24) + "\u2026"}</figcaption></div></Link></div>)
+          <div className="dish"><Link to={"/onedish/" + dish.id} style={{color:'black'}}><div className="figure" id={dish.id}><img src={"https://spoonacular.com/recipeImages/" + dish.image} alt="Image" width="100px" height="100px" onClick={() => {this.imageClick}}></img><figcaption>{dish.title.substr(0, 24) + "\u2026"}</figcaption></div></Link></div>)
           
         break;
       default:
